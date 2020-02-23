@@ -18,16 +18,20 @@
     <!-- Your own CSS -->
     <link rel="stylesheet" href="/styles.css">
 
-    <title>News</title>
+    <title>Locale Information</title>
   </head>
   <body>
 
+ <nav class="navbar navbar-dark bg-success">
+        <a class="navbar-brand">Locale Information</a>
+        <form class="form-inline" action="/news">
+            <input class="form-control mr-sm-2" placeholder="Destination" aria-label="Destination" type="text" name="q">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+
     <div class="container mt-5">
-     <h1>Where are you?</h1>
-      <form action="/news">
-        <input type="text" name="q">
-        <button type="submit"> Go there</submit>
-      </form>
+     <h1>Use the search bar for Locale Information</h1>
     </div>
 
     <!-- Optional JavaScript -->

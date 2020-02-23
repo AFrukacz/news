@@ -18,15 +18,38 @@
     <!-- Your own CSS -->
     <link rel="stylesheet" href="/styles.css">
 
-    <title>News</title>
+    <title>Locale Information</title>
   </head>
   <body>
 
+    <nav class="navbar navbar-dark bg-success">
+        <a class="navbar-brand">Locale Information</a>
+        <form class="form-inline" action="/news">
+            <input class="form-control mr-sm-2" placeholder="Update Destination" aria-label="Update Destination" type="text" name="q">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+  
     <div class="container mt-5">
-      <h1>Here is the weather for <%= @location %>.</h1>
-        <p>
-            <%=@lat_long%>
-        </p>
+      <h1>Locale Weather for <%= @location %>.</h1>
+    </div>
+    
+    <div class="container mt-5">
+      <h1>Locale News for <%= @location %>.</h1>
+            <div class="col">
+                    <% for article in @articles %>
+                        <div class="row news-padding">
+                            <div class="col-2">
+                                <a href="<%= article["url"] %>"><img src="<%= article["urlToImage"] %>" class="img-fluid"></a>
+                            </div>
+                            <div class="col-10">
+                                <a href="<%= article["url"] %>"><b><%= article["title"] %></b></a></br>
+                                <div class="d-none d-md-block"><%= article["description"] %>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+            </div>
     </div>
 
     <!-- Optional JavaScript -->
