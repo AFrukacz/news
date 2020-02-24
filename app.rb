@@ -28,15 +28,17 @@ get "/news" do
 
 
 # pull forecast
-forecast = ForecastIO.forecast(lat,long).to_hash
-    @current = forecast["currently"]
-    @forecast = forecast["daily"]["data"]
+    @forecast = ForecastIO.forecast(lat,long).to_hash
+    @current_temp = @forecast["currently"]["temperature"]
+    @current_cond = @forecast["currently"]["summary"]
+    @daily_temperature = []
+    @daily_conditions = []
 
 # pull news
     url = "https://newsapi.org/v2/top-headlines?country=#{country}&language=en&apiKey=13454b5bbb1440d3b6a79ad60bf2a395"
     news = HTTParty.get(url).parsed_response.to_hash
     if news["status"] == "ok"
-        @articles = news["articles"]
+        @news = news["articles"]
     else
     end
 
