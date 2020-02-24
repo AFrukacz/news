@@ -1,3 +1,11 @@
 body {
-    background-color: slategray
+    background-color: beige;
+}
+h2 {
+    color: rgb(55, 82, 8);
+    font-size: 100%;
+}
+h3 {
+    color: darkred;
+    font-size: 200%;
 }

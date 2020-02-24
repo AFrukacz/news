@@ -23,7 +23,6 @@ get "/news" do
     lat_long = results.first.coordinates # => [lat, long]
     lat = lat_long[0]
     long = lat_long[1]
-    country = results.first.country_code
     @location = results.first.city.capitalize
 
 
@@ -31,15 +30,21 @@ get "/news" do
     @forecast = ForecastIO.forecast(lat,long).to_hash
     @current_temp = @forecast["currently"]["temperature"]
     @current_cond = @forecast["currently"]["summary"]
-    @daily_temperature = []
-    @daily_conditions = []
+    @daily_temp = []
+    @daily_cond = []
+    for @day_forecast in @forecast["daily"]["data"] do
+        @daily_temp << @day_forecast["temperatureHigh"]
+        @daily_cond << @day_forecast["summary"]
+    end
 
 # pull news
-    url = "https://newsapi.org/v2/top-headlines?country=#{country}&language=en&apiKey=13454b5bbb1440d3b6a79ad60bf2a395"
-    news = HTTParty.get(url).parsed_response.to_hash
-    if news["status"] == "ok"
-        @news = news["articles"]
-    else
+    url = "https://newsapi.org/v2/top-headlines?country=us&language=en&apiKey=13454b5bbb1440d3b6a79ad60bf2a395"
+    @news = HTTParty.get(url).parsed_response.to_hash
+    @news_title = []
+    @story_url = []
+    for daily_news in @news["articles"] do
+        @news_title << daily_news["title"]
+        @story_url << daily_news["url"]
     end
 
     view "news"

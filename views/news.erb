@@ -31,10 +31,10 @@
     </nav>
   
     <div class="container mt-5">
-      <h1>Locale Weather for <%= @location %>.  </h1>
-      <p> In <%= @location %>, it is currently <%= @current_temp %> degrees fahrenheit and <%= @current_cond %>.</p>
+      <h1>Locale Weather for <%= @location %>:</h1>
+        <h2> It is currently <%= @current_temp %> degrees (F) and <%= @current_cond %>.</h2>
       <p> </p>
-      <h2> Your 3-day Forecast. </h2>
+      <h3> Your 3-day Forecast. </h3>
       <div class="container mt-5">
 <table class="table">
   <thead class="thead-dark">
@@ -47,18 +47,18 @@
   <tbody>
     <tr>
       <th scope="row">Tomorrow</th>
-      <td><%=@daily_temperature[0]%> degrees</td>
-      <td><%=@daily_conditions[0]%></td>
+      <td><%=@daily_temp[0]%> degrees</td>
+      <td><%=@daily_cond[0]%></td>
     </tr>
     <tr>
       <th scope="row">In 2 Days</th>
-      <td><%=@daily_temperature[0]%> degrees</td>
-      <td><%=@daily_conditions[0]%></td>
+      <td><%=@daily_temp[1]%> degrees</td>
+      <td><%=@daily_cond[1]%></td>
     </tr>
     <tr>
       <th scope="row">In 3 Days</th>
-      <td><%=@daily_temperature[0]%> degrees</td>
-      <td><%=@daily_conditions[0]%></td>
+      <td><%=@daily_temp[2]%> degrees</td>
+      <td><%=@daily_cond[2]%></td>
     </tr>
   </tbody>
 </table>
@@ -70,17 +70,13 @@
     <div class="container mt-5">
       <h1>Locale News for <%= @location %>.</h1>
             <div class="col">
-                    <% for article in @news %>
-                        <div class="row news-padding">
-                            <div class="col-0">
+                    <% for article in @news["articles"] %>
                                 <a href="<%= article["url"] %>"></a>
                             </div>
                             <div class="col-10">
-                                <a href="<%= article["url"] %>"><b><%= article["title"] %></b></a></br>
-                                <div class="d-none d-md-block"><%= article["description"] %>
+                               <ul><li> <a href="<%= article["url"] %>"><b><%= article["title"] %></b></a></br> </li></ul>
+                                <div class="d-none d-md-block">
                                 </div>
-                            </div>
-                        </div>
                     <% end %>
             </div>
     </div>
